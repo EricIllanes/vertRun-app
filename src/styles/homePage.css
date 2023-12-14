@@ -1,0 +1,10 @@
+.homepage-container{
+    width: 100%;
+}
+
+.main-container{
+    padding-top: 120px;
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+}
