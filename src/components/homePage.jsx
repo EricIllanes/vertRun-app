@@ -1,7 +1,7 @@
 import NavBar from "./navBar";
 import "../styles/homePage.css";
 import { useEffect, useState } from "react";
-import { getData } from "../redux/actions";
+import { filteredData, getData } from "../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import CardActivities from "./cardActivities";
 
@@ -13,14 +13,27 @@ export default function HomePage() {
   }, []);
 
   const [selected, isSelected] = useState(false);
+  function onChangeSelect(event){
+    console.log(event.target.value)
+    dispatch(filteredData(event.target.value))
+  }
 
   return (
     <div className="homepage-container">
-      <NavBar />
+      <header className="">
+        <NavBar />
+      </header>
+      <section className="section-select">
+        <select onChange={(event)=>onChangeSelect(event)}>
+          <option value="all">Ambos</option>
+          <option value="Eric">Eric</option>
+          <option value="Hiromi">Hiromi</option>
+        </select>
+      </section>
       <main className="main-container">
         {dataInitial?.map((users) =>
-          users?.activities.map((activities) => (
-            <section key={activities.id}>
+          users?.activities.map((activities, index) => (
+            <section key={index}>
               <CardActivities
                 nameAthlethe={users.name}
                 name={activities.name}

@@ -6,8 +6,8 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  position: fixed;
-  border-bottom: 2px solid #ff64275d
+  /* position: fixed; */
+  border-bottom: 2px solid #ff64275d;
 }
 
 .anchor-nav {

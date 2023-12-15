@@ -1,15 +1,33 @@
-import "../styles/cardActivities.css"
-export default function CardActivities(props){
-    return(
-        <div className="card">
-             <section>{props.nameAthlethe}</section>
-            <section>{props.name}</section>
-            <section>{props.type}</section>
-            <section>{props.date}</section>
-            <section>{props.distance}</section>
-            <section>{props.time}</section>
-            <section>{props.elevation}</section>
-
-        </div>
-    )
+import {
+  CalendarIcon,
+  ClockIcon,
+  DistanceIcon,
+  ElevationIcon,
+  RunIcon,
+} from "../assets/Icons";
+import "../styles/cardActivities.css";
+export default function CardActivities(props) {
+  return (
+    <div className="card">
+      <section>
+        {" "}
+        <RunIcon /> {props.name}
+      </section>
+      <section>
+        {" "}
+        <CalendarIcon /> {props.date}
+      </section>
+      <section>
+        <DistanceIcon /> {props.distance} km
+      </section>
+      <section>
+        {" "}
+        <ClockIcon /> {props.time}
+      </section>
+      <section>
+        <ElevationIcon />
+        {props.elevation} metros
+      </section>
+    </div>
+  );
 }
