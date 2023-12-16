@@ -6,36 +6,37 @@ import { useDispatch, useSelector } from "react-redux";
 import CardActivities from "./cardActivities";
 
 export default function HomePage() {
-  const { dataInitial } = useSelector((state) => state);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getData());
+    dispatch(filteredData("Usuario 1"));
   }, []);
-
-  const [selected, isSelected] = useState(false);
-  function onChangeSelect(event){
-    console.log(event.target.value)
-    dispatch(filteredData(event.target.value))
+  const { dataInitial } = useSelector((state) => state);
+  function onChangeSelect(event) {
+    dispatch(filteredData(event.target.value));
   }
-
   return (
     <div className="homepage-container">
-      <header className="">
-        <NavBar />
-      </header>
+      <NavBar />
       <section className="section-select">
-        <select onChange={(event)=>onChangeSelect(event)}>
-          <option value="all">Ambos</option>
-          <option value="Eric">Eric</option>
-          <option value="Hiromi">Hiromi</option>
+        <h2>
+          Puedes ver a continuación las últimas actividades realizadas por dos
+          atletas:{" "}
+        </h2>
+        <select
+          onChange={(event) => onChangeSelect(event)}
+          className="homepage-select"
+        >
+          <option value="Usuario 1">Usuario 1</option>
+          <option value="Usuario 2">Usuario 2</option>
         </select>
       </section>
       <main className="main-container">
         {dataInitial?.map((users) =>
-          users?.activities.map((activities, index) => (
+          users?.activities.slice(0, 4).map((activities, index) => (
             <section key={index}>
               <CardActivities
-                nameAthlethe={users.name}
+                nameAthlete={users.name}
                 name={activities.name}
                 type={activities.type}
                 date={activities.date}
